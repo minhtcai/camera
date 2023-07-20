@@ -436,8 +436,8 @@
             merge = cv2.createMergeDebevec()
             hdr = merge.process(images, times=np.array(exposure_speeds, dtype=np.float32), response=response)
 
-            # Apply different tone mapping methods
-            tonemap1 = cv2.createTonemapDurand(gamma=2.2)
+            # # Apply different tone mapping methods
+            tonemap1 = cv2.createTonemapDurand(gamma=2.2) # Prob from the HDR image, 1.0 should be I 
             res_debvec = tonemap1.process(hdr.copy())
             tonemap2 = cv2.createTonemapDrago(gamma=2.2)
             res_drago = tonemap2.process(hdr.copy())
@@ -448,18 +448,19 @@
 
             # Display the results
             fig, axs = plt.subplots(1, 4, figsize=(20, 5))
-            axs[0].imshow(cv2.cvtColor(np.clip(res_debvec * 255, 0, 255).astype('uint8'), cv2.COLOR_BGR2RGB))
+            axs[0].imshow(np.clip(res_debvec * 255, 0, 255).astype('uint8'))
             axs[0].set_title('Debevec')
-            axs[1].imshow(cv2.cvtColor(np.clip(res_drago * 255, 0, 255).astype('uint8'), cv2.COLOR_BGR2RGB))
+            axs[1].imshow(np.clip(res_drago * 255, 0, 255).astype('uint8'))
             axs[1].set_title('Drago')
-            axs[2].imshow(cv2.cvtColor(np.clip(res_reinhard * 255, 0, 255).astype('uint8'), cv2.COLOR_BGR2RGB))
+            axs[2].imshow(np.clip(res_reinhard * 255, 0, 255).astype('uint8'))
             axs[2].set_title('Reinhard')
-            axs[3].imshow(cv2.cvtColor(np.clip(res_mantiuk * 255, 0, 255).astype('uint8'), cv2.COLOR_BGR2RGB))
+            axs[3].imshow(np.clip(res_mantiuk * 255, 0, 255).astype('uint8'))
             axs[3].set_title('Mantiuk')
             for ax in axs:
                 ax.axis('off')
             plt.show()
             </code></pre>
+            <!-- verify is pixel is linear with exposure, can recover radiance -->
             <div style="white-space: nowrap; overflow-x: auto;">
                 <img src="images/output9.png" alt="Image 1" width="1200">
             </div>
