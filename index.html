@@ -42,6 +42,15 @@
             bottom: 0;
             width: 100%;
         }
+        /* CSS to rotate the H.264 video */
+        #h264Video {
+            transform: rotate(180deg); /* Adjust the angle as needed (e.g., 90deg, 180deg) */
+        }
+
+        /* CSS to rotate the MJPEG video */
+        #mjpegVideo {
+            transform: rotate(180deg); /* Adjust the angle as needed (e.g., 90deg, 180deg) */
+        }
     </style>
 </head>
 <body>
@@ -467,8 +476,66 @@
         </section>
 
         <section id="intro">
+            <h2>PiCamera2</h2>
+            <p>PiCamera2 is actually pretty powerful but is in Beta so first you need to upgrade to Bullseye OS first.</p>
+            <p>Update Raspberry OS <a href="https://blues.io/blog/guide-upgrade-raspberry-pi-buster-bullseye/">here</a>!</p>
+            <p>Capture/Stream RAW and DNG Video (Convert TIFF to jpg, DNG, TIFF8bit, TIFF16bit)</p>
+            <p>Bit-depth represent the number of color information stored in the image.</p>
+            <div style="white-space: nowrap; overflow-x: auto;">
+                <img src="images/test.jpg" alt="Image 1" width="400">
+                <img src="images/test-8bit.jpg" alt="Image 1" width="400">
+                <img src="images/test-16bit.jpg" alt="Image 1" width="400">
+            </div>
+            <p>Stack RAW/Proccesed for image with longer exposure (Proccesed, RAW - DNG) <a href="https://github.com/raspberrypi/picamera2/blob/main/examples/stack_raw.py/">code</a></p>
+            <div style="white-space: nowrap; overflow-x: auto;">
+                <img src="images/accumulated.jpg" alt="Image 1" width="400">
+                <img src="images/accumulated.png" alt="Image 1" width="500">
+            </div>
+            <p>Capture/Encode in both H264 and MJPEG</p>
+            <p>MJPEG compress each frame so the quality is better while H264 compress the whole volume so the ratio is better.</p>
+            <h1>H.264 Video (Converted to MP4)</h1>
+            <video id="h264Video" width="640" height="360" controls>
+                <source src="images/out.mp4" type="video/mp4">
+                <!-- Fallback content for browsers that do not support H.264 -->
+                Your browser does not support the video tag.
+            </video>
+
+            <h1>MJPEG Video</h1>
+            <video id="mjpegVideo" width="640" height="360" controls>
+                <source src="images/out.mjpeg" type="video/mjpeg">
+                <!-- Fallback content for browsers that do not support MJPEG -->
+                Your browser does not support the video tag.
+            </video>
+        </section>
+
+        <section id="intro">
             <h2>Time-of-Flight Kinectv2 (to be updated)</h2>
-            <p>This is where I perform experiments related to computer vision to refresh and deepen my understanding.</p>
+            <p>To stream Kinectv2 you need to install <a href="https://github.com/OpenKinect/libfreenect2/issues/1084">libfreenect2</a></p>
+            <p>But to save image, you need to use a Python API and install <a href="https://github.com/r9y9/pylibfreenect2/blob/master/examples/multiframe_listener.py">pylibfreenect2</a></p>
+            <div style="white-space: nowrap; overflow-x: auto;">
+                <img src="images/kinect.jpg" alt="Kinnect" width="800">
+            </div>
+        </section>
+
+        <section id="intro">
+            <h2>DiffuserCam</h2>
+            <p>DiffuserCam <a href="https://waller-lab.github.io/DiffuserCam/">Tutorial</a>!</p>
+            <p>Here is my setup and some initial results.</p>
+            <div style="white-space: nowrap; overflow-x: auto;">
+                <img src="images/setup.jpg" alt="Kinnect" width="400">
+            </div>
+            <p>With Lenses - No Laser - Laser - Laser w Diffuser</p>
+            <div style="white-space: nowrap; overflow-x: auto;">
+                <img src="images/dc1.png" alt="Image 1" width="400">
+                <img src="images/dc2.png" alt="Image 1" width="400">
+                <img src="images/dc3.png" alt="Image 1" width="400">
+            </div>
+            <p>Without Lenses - No Laser - Laser - Laser w Diffuser</p>
+            <div style="white-space: nowrap; overflow-x: auto;">
+                <img src="images/dc4.png" alt="Image 1" width="400">
+                <img src="images/dc5.png" alt="Image 1" width="400">
+                <img src="images/dc6.png" alt="Image 1" width="400">
+            </div>
         </section>
 
         <section id="intro">
